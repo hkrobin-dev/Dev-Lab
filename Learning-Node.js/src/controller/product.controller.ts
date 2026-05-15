@@ -2,6 +2,7 @@ import type { IncomingMessage, ServerResponse } from "node:http";
 import { insertProduct, readProduct } from "../service/product.service";
 import type { IProduct } from "../types/product.type";
 import { parseBody } from "../utility/parseBody";
+import { sendResponse } from "../utility/sendResponse";
 
 export const productController = async (req: IncomingMessage, res: ServerResponse) => {
 
@@ -17,25 +18,29 @@ export const productController = async (req: IncomingMessage, res: ServerRespons
 
     if (url === "/products" && method === "GET") {
 
-        const products = readProduct()
+        try {
+            const products = readProduct()
+            return sendResponse(res, 200, true, "products retrived successfully", products);
+        } catch (error) {
 
-        res.writeHead(200, { "content-type": "application/json" })
-        res.end(JSON.stringify({ message: "This is product Route", data: readProduct() }))
+            return sendResponse(res, 500, false, "products some thing was wrong", error);
+        }
 
     } else if (method === "GET" && id !== null) {
         const products = readProduct();
         const product = products.find((p: IProduct) => p.id === id);
         //  console.log(product)
-        if(!product){
-            res.writeHead(404, { "content-type": "application/json" })
-            res.end(JSON.stringify({
-                message: " product not found",
-                data: product,
-            }))
+        if (!product) {
+            return sendResponse(res, 404, false, "not found")
         }
 
-        res.writeHead(200, { "content-type": "application/json" })
-        res.end(JSON.stringify({ message: " product retrived successfully", data: product }))
+        try {
+            const products = readProduct()
+            return sendResponse(res, 200, true, "products retrived successfully", products);
+        } catch (error) {
+
+            return sendResponse(res, 500, false, "products some thing was wrong", error);
+        }
 
 
     } else if (method === "POST" && url === "/products") {
