@@ -14,8 +14,8 @@ export const routeHandler = (req: IncomingMessage, res: ServerResponse) => {
     } else if (url?.startsWith("/")) {
         productController(req, res);
     }
-    else {
-        res.writeHead(404, { "content-type": "application/json" })
-        res.end(JSON.stringify({ message: "ROUTE NOT FOUND" }))
-    } 
-}
+    // else {
+    //     res.writeHead(404, { "content-type": "application/json" })
+    //     res.end(JSON.stringify({ message: "ROUTE NOT FOUND" }))
+    // } 
+} 
