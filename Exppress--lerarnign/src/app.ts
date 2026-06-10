@@ -2,6 +2,7 @@ import express, { type Application, type Request, type Response } from "express"
 import { pool } from "./db";
 import { userRoute } from "./modules/user/user.rotue";
 import { profileRoute } from "./modules/profile/profile.route";
+import { authRoute } from "./modules/auth/auth.route";
 const app: Application = express()
 
 app.use(express.json());
@@ -17,6 +18,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 app.use("/app/users", userRoute);
 app.use("/app/profile", profileRoute);
+app.use("/api/auth", authRoute)
 
 
 
