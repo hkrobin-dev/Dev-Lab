@@ -24,3 +24,11 @@ Method -> GET Time -> 1781102078501  URL -> /app/users
 Method -> GET Time -> 1781102120392  URL -> /app/users
 
 Method -> GET Time -> 1781102125124  URL -> /api/users
+
+Method -> POST Time -> 1781357860408  URL -> /api/auth/login
+
+Method -> GET Time -> 1781358841094  URL -> /app/users
+
+Method -> GET Time -> 1781358994297  URL -> /app/users
+
+Method -> GET Time -> 1781359005945  URL -> /api/users
