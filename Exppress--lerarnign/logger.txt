@@ -1,0 +1,26 @@
+Method -> GET Time -> 1781101833030  URL -> /
+Method -> GET Time -> 1781101921401  URL -> /api
+
+Method -> GET Time -> 1781101927865  URL -> /api/users
+
+Method -> GET Time -> 1781101929850  URL -> /api/users
+
+Method -> GET Time -> 1781101946521  URL -> /api/users
+
+Method -> GET Time -> 1781101948103  URL -> /api/users
+
+Method -> GET Time -> 1781101951725  URL -> /
+
+Method -> GET Time -> 1781101960106  URL -> /api/users
+
+Method -> GET Time -> 1781101968384  URL -> /api/users
+
+Method -> GET Time -> 1781102005950  URL -> /api/users
+
+Method -> GET Time -> 1781102065223  URL -> /app/users
+
+Method -> GET Time -> 1781102078501  URL -> /app/users
+
+Method -> GET Time -> 1781102120392  URL -> /app/users
+
+Method -> GET Time -> 1781102125124  URL -> /api/users
