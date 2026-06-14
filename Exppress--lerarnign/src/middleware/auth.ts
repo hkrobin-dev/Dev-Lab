@@ -1,19 +1,63 @@
 import type { NextFunction, Request, Response } from "express"
+import jwt, { type JwtPayload } from "jsonwebtoken"
+import config from "../config";
+import { pool } from "../db";
+import { truncates } from "bcryptjs";
+const auth = () => {
+    return async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            // console.log(req.headers);
 
-const auth = ()=>{
-    return async  (req :Request,res : Response,next : NextFunction)=>{
-    // console.log(req.headers);
-    const token = req.headers.authorization;
 
-    if(!token){
-        res.status(401).json({
-        success: false,
-        message: "Unauthorized   User",
-      
-    });
+            /*
+    
+            1.check if the token exist
+            2.verify the token 
+            3.find the user into db
+            4.if the user active or not?
+    
+            ***/
+
+
+            const token = req.headers.authorization;
+            // console.log(token)
+            if (!token) {
+                res.status(401).json({
+                    success: false,
+                    message: "Unauthorized   User",
+
+                });
+            }
+
+            const decoded = jwt.verify(token as string, config.secret as string) as JwtPayload;
+
+            const userData = await pool.query(`
+        SECRET * FROM users WHERE email=$1
+        `, [decoded.email])
+
+            const user = userData.rows[0];
+
+            if (userData.rows.length === 0) {
+                res.status(404).json({
+                    success: false,
+                    message: " User not found",
+
+                });
+            }
+            if (!user.is_active) {
+                res.status(403).json({
+                    success: false,
+                    message: "Forbidden",
+
+                });
+            }
+            req.user = decoded,
+
+                next()
+        } catch (error) {
+            next(error)
+        }
     }
-    next()
-}
 }
 
 export default auth
