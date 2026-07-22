@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0b0b;
+  --foreground: #f7f3ec;
+  --cream: #f7f3ec;
+  --gold: #c9a962;
+  --gold-light: #d4af37;
+  --charcoal: #1a1a1a;
+  --muted: #9a9590;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-charcoal: var(--charcoal);
+  --color-muted: var(--muted);
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #c9a962 0%, #d4af37 50%, #c9a962 100%);
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #c9a962, #d4af37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-padding {
+  @apply px-6 py-20 md:px-12 lg:px-20 lg:py-28;
+}
+
+.luxury-border {
+  border: 1px solid rgba(201, 169, 98, 0.3);
+}
+
+.luxury-card {
+  @apply bg-charcoal luxury-border transition-all duration-300 hover:border-gold/60 hover:-translate-y-1;
+}
+
+input,
+select,
+textarea {
+  @apply w-full rounded-sm border border-gold/20 bg-background px-4 py-3 text-foreground outline-none transition-colors focus:border-gold;
+}
+
+label {
+  @apply mb-2 block text-sm tracking-widest uppercase text-muted;
+}
